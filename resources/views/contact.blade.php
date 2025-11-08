@@ -29,7 +29,8 @@
                 <div class="col-lg-3">
                     <div class="imges-header">
                         <div class="img1">
-                            <img src="{{ asset_url($siteSettings['contact_hero_image'] ?? 'images/hero-img1.png') }}" alt="" class="keyframe6">
+                            <img src="{{ asset_url($siteSettings['contact_hero_image'] ?? 'images/hero-img1.png') }}"
+                                alt="" class="keyframe6">
                         </div>
                         <div class="arrow">
                             <a href="#contact-form">
@@ -105,12 +106,15 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="contact-images">
-                                <img src="{{ asset($siteSettings['contact_elements_image'] ?? 'images/elements21.webp') }}" alt="" class="elements21">
+                                <img src="{{ asset($siteSettings['contact_elements_image'] ?? 'images/elements21.webp') }}"
+                                    alt="" class="elements21">
                                 <div class="img1">
-                                    <img src="{{ asset_url($siteSettings['contact_image_1'] ?? 'images/contact-img1.png') }}" alt="">
+                                    <img src="{{ asset_url($siteSettings['contact_image_1'] ?? 'images/contact-img1.png') }}"
+                                        alt="">
                                 </div>
                                 <div class="img2">
-                                    <img src="{{ asset_url($siteSettings['contact_image_2'] ?? 'images/contact-img2.png') }}" alt="">
+                                    <img src="{{ asset_url($siteSettings['contact_image_2'] ?? 'images/contact-img2.png') }}"
+                                        alt="">
                                 </div>
                             </div>
                         </div>

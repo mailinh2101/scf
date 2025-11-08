@@ -22,26 +22,26 @@ class SiteSetting extends Model
     protected static array $imageKeys = [
         // Logo & Icons
         'logo_header', 'logo_footer', 'sub_logo', 'placeholder_image',
-        
+
         // Home page
         'home_hero_background', 'home_hero_image', 'home_hero_decoration',
-        
+
         // Contact page
         'contact_hero_image', 'contact_hero_decoration',
         'contact_section_image_left', 'contact_section_image_right',
-        
+
         // Blog page
         'blog_hero_image', 'blog_hero_decoration',
-        
+
         // Careers page
         'careers_hero_image', 'careers_hero_decoration',
-        
+
         // Products page
         'products_hero_image', 'products_hero_decoration',
-        
+
         // About page
         'about_hero_image', 'about_hero_decoration',
-        
+
         // Footer
         'footer_decoration_image',
     ];
