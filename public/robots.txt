@@ -1,0 +1,23 @@
+# Robots.txt for Starvik SEO
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /filament/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /*.json$
+Disallow: /vendor/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /routes/
+Disallow: /tests/
+
+# Crawl delay (in seconds)
+Crawl-delay: 1
+
+# Request rate
+Request-rate: 1/1s
+
+# Sitemap location
+Sitemap: https://scf.vn/sitemap.xml

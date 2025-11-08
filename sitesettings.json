@@ -1,0 +1,332 @@
+{
+  "sitesettings": {
+    "categories": {
+      "global": {
+        "label": "📋 Chung - Global Settings",
+        "description": "Áp dụng cho toàn bộ website",
+        "icon": "⚙️",
+        "settings": [
+          {
+            "key": "site_domain",
+            "label": "Tên miền",
+            "type": "text",
+            "default": "scf.vn",
+            "description": "Tên miền website",
+            "example": "scf.vn"
+          },
+          {
+            "key": "site_description",
+            "label": "Mô tả công ty",
+            "type": "textarea",
+            "default": "SCF — Cung cấp sản phẩm gia dụng chất lượng cao...",
+            "description": "Mô tả ngắn về công ty (dùng cho SEO)",
+            "example": "SCF — Cung cấp sản phẩm gia dụng chất lượng cao..."
+          }
+        ]
+      },
+      "logos": {
+        "label": "🎨 Logo & Biểu Tượng",
+        "description": "Dùng chung trên tất cả các trang",
+        "icon": "🖼️",
+        "settings": [
+          {
+            "key": "logo_header",
+            "label": "Logo Header",
+            "type": "image",
+            "default": "images/logo.png",
+            "description": "Logo hiển thị ở phía trên (Header)",
+            "location": "Tất cả trang - phía trên"
+          },
+          {
+            "key": "logo_footer",
+            "label": "Logo Footer",
+            "type": "image",
+            "default": "images/logo2.png",
+            "description": "Logo hiển thị ở phía dưới (Footer)",
+            "location": "Tất cả trang - phía dưới"
+          },
+          {
+            "key": "sub_logo",
+            "label": "Logo Phụ",
+            "type": "image",
+            "default": "images/sub-logo2.svg",
+            "description": "Logo phụ hoặc Icon thương hiệu",
+            "location": "Các mục Contact, Blog"
+          },
+          {
+            "key": "placeholder_image",
+            "label": "Ảnh Mặc Định",
+            "type": "image",
+            "default": "images/placeholder.svg",
+            "description": "Ảnh mặc định khi hình bị lỗi",
+            "location": "Tất cả trang"
+          }
+        ]
+      },
+      "contact": {
+        "label": "📞 Liên Hệ - Contact Page",
+        "description": "Trang: https://scf.vn/contact",
+        "icon": "📧",
+        "settings": [
+          {
+            "key": "contact_email",
+            "label": "Email Liên Hệ",
+            "type": "email",
+            "default": "hr03.gr@gmail.com",
+            "description": "Email để khách hàng liên lạc",
+            "location": "Trang Contact, Form, Footer"
+          },
+          {
+            "key": "contact_phone",
+            "label": "Số Điện Thoại",
+            "type": "tel",
+            "default": "0902.381.851",
+            "description": "Số điện thoại công ty",
+            "location": "Trang Contact, Footer"
+          },
+          {
+            "key": "contact_address",
+            "label": "Địa Chỉ",
+            "type": "textarea",
+            "default": "Lầu 6, 195-197 Nguyễn Thị Nhung, Hiệp Bình Phước, Thủ Đức, Hồ Chí Minh, Việt Nam",
+            "description": "Địa chỉ văn phòng",
+            "location": "Trang Contact"
+          },
+          {
+            "key": "contact_working_hours",
+            "label": "Giờ Làm Việc",
+            "type": "text",
+            "default": "Thứ 2 - Thứ 7: 8:00 - 17:00",
+            "description": "Giờ làm việc",
+            "location": "Trang Contact"
+          },
+          {
+            "key": "contact_map_embed",
+            "label": "Bản Đồ Google Maps",
+            "type": "textarea",
+            "default": "https://www.google.com/maps/embed?pb=...",
+            "description": "Embed iframe từ Google Maps",
+            "location": "Trang Contact"
+          },
+          {
+            "key": "contact_hero_image",
+            "label": "Ảnh Banner Hero",
+            "type": "image",
+            "default": "images/hero-img1.png",
+            "description": "Ảnh chính ở đầu trang Contact",
+            "location": "Trang Contact - phía trên"
+          },
+          {
+            "key": "contact_hero_decoration",
+            "label": "Trang Trí Banner",
+            "type": "image",
+            "default": "images/elements21.webp",
+            "description": "Hình trang trí bên cạnh banner",
+            "location": "Trang Contact - phía trên"
+          },
+          {
+            "key": "contact_section_image_left",
+            "label": "Ảnh Bên Trái",
+            "type": "image",
+            "default": "images/contact-img1.png",
+            "description": "Ảnh bên trái phần thông tin",
+            "location": "Trang Contact - giữa"
+          },
+          {
+            "key": "contact_section_image_right",
+            "label": "Ảnh Bên Phải",
+            "type": "image",
+            "default": "images/contact-img2.png",
+            "description": "Ảnh bên phải phần thông tin",
+            "location": "Trang Contact - giữa"
+          }
+        ]
+      },
+      "blog": {
+        "label": "📰 Tin Tức - Blog Page",
+        "description": "Trang: https://scf.vn/blog",
+        "icon": "📝",
+        "settings": [
+          {
+            "key": "blog_section_title",
+            "label": "Tiêu Đề Blog",
+            "type": "text",
+            "default": "Tin tức & bài viết",
+            "description": "Tiêu đề mục Blog",
+            "location": "Trang Blog"
+          },
+          {
+            "key": "blog_section_subtitle",
+            "label": "Mô Tả Blog",
+            "type": "text",
+            "default": "Tin ngành bán buôn & nguồn hàng",
+            "description": "Mô tả ngắn mục Blog",
+            "location": "Trang Blog"
+          },
+          {
+            "key": "blog_hero_image",
+            "label": "Ảnh Banner Hero",
+            "type": "image",
+            "default": "images/hero-img1.png",
+            "description": "Ảnh chính ở đầu trang Blog",
+            "location": "Trang Blog - phía trên"
+          },
+          {
+            "key": "blog_hero_decoration",
+            "label": "Trang Trí Banner",
+            "type": "image",
+            "default": "images/elements15.png",
+            "description": "Hình trang trí Banner",
+            "location": "Trang Blog - phía trên"
+          }
+        ]
+      },
+      "careers": {
+        "label": "💼 Tuyển Dụng - Careers Page",
+        "description": "Trang: https://scf.vn/careers",
+        "icon": "💼",
+        "settings": [
+          {
+            "key": "careers_hero_image",
+            "label": "Ảnh Banner Hero",
+            "type": "image",
+            "default": "images/hero-img1.png",
+            "description": "Ảnh chính ở đầu trang Tuyển Dụng",
+            "location": "Trang Careers - phía trên"
+          },
+          {
+            "key": "careers_hero_decoration",
+            "label": "Trang Trí Banner",
+            "type": "image",
+            "default": "images/elements15.png",
+            "description": "Hình trang trí Banner",
+            "location": "Trang Careers - phía trên"
+          }
+        ]
+      },
+      "products": {
+        "label": "🛍️ Sản Phẩm - Products Page",
+        "description": "Trang: https://scf.vn/products",
+        "icon": "📦",
+        "settings": [
+          {
+            "key": "products_hero_image",
+            "label": "Ảnh Banner Hero",
+            "type": "image",
+            "default": "images/hero-img1.png",
+            "description": "Ảnh chính ở đầu trang Sản Phẩm",
+            "location": "Trang Products - phía trên"
+          },
+          {
+            "key": "products_hero_decoration",
+            "label": "Trang Trí Banner",
+            "type": "image",
+            "default": "images/elements15.png",
+            "description": "Hình trang trí Banner",
+            "location": "Trang Products - phía trên"
+          }
+        ]
+      },
+      "about": {
+        "label": "ℹ️ Giới Thiệu - About Page",
+        "description": "Trang: https://scf.vn/about",
+        "icon": "ℹ️",
+        "settings": [
+          {
+            "key": "about_hero_image",
+            "label": "Ảnh Banner Hero",
+            "type": "image",
+            "default": "images/hero-img1.png",
+            "description": "Ảnh chính ở đầu trang Giới Thiệu",
+            "location": "Trang About - phía trên"
+          },
+          {
+            "key": "about_hero_decoration",
+            "label": "Trang Trí Banner",
+            "type": "image",
+            "default": "images/elements15.png",
+            "description": "Hình trang trí Banner",
+            "location": "Trang About - phía trên"
+          }
+        ]
+      },
+      "home": {
+        "label": "🏠 Trang Chủ - Home Page",
+        "description": "Trang: https://scf.vn",
+        "icon": "🏠",
+        "settings": [
+          {
+            "key": "home_hero_background",
+            "label": "Ảnh Nền Hero",
+            "type": "image",
+            "default": "images/bg1.png",
+            "description": "Ảnh nền phần hero",
+            "location": "Trang Home - phía trên"
+          },
+          {
+            "key": "home_hero_image",
+            "label": "Ảnh Hero",
+            "type": "image",
+            "default": "images/elements15.png",
+            "description": "Ảnh chính phần hero",
+            "location": "Trang Home - phía trên"
+          },
+          {
+            "key": "home_hero_decoration",
+            "label": "Trang Trí Hero",
+            "type": "image",
+            "default": "images/elements15.png",
+            "description": "Hình trang trí phần hero",
+            "location": "Trang Home - phía trên"
+          }
+        ]
+      },
+      "footer": {
+        "label": "🦶 Footer - Dùng Chung",
+        "description": "Áp dụng cho tất cả các trang",
+        "icon": "🦶",
+        "settings": [
+          {
+            "key": "footer_decoration_image",
+            "label": "Trang Trí Footer",
+            "type": "image",
+            "default": "images/elements6.png",
+            "description": "Hình trang trí ở phần cuối",
+            "location": "Tất cả trang - phía dưới"
+          }
+        ]
+      },
+      "labels": {
+        "label": "🏷️ Nội Dung Văn Bản - Labels",
+        "description": "Các nhãn nút bấm trên website",
+        "icon": "🏷️",
+        "settings": [
+          {
+            "key": "button_contact_label",
+            "label": "Nút Liên Hệ",
+            "type": "text",
+            "default": "Liên hệ",
+            "description": "Text nút 'Liên Hệ'",
+            "location": "Tất cả trang"
+          },
+          {
+            "key": "button_read_more_label",
+            "label": "Nút Đọc Thêm",
+            "type": "text",
+            "default": "Tìm hiểu thêm",
+            "description": "Text nút 'Đọc Thêm' (Blog, Products)",
+            "location": "Blog, Products"
+          },
+          {
+            "key": "button_learn_more_label",
+            "label": "Nút Tìm Hiểu Thêm",
+            "type": "text",
+            "default": "Đọc thêm",
+            "description": "Text nút 'Tìm Hiểu Thêm'",
+            "location": "Các mục khác"
+          }
+        ]
+      }
+    }
+  }
+}
