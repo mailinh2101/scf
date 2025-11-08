@@ -129,7 +129,7 @@ if command -v mysqldump &> /dev/null; then
         DB_USER=$(grep DB_USERNAME .env | cut -d '=' -f2)
         DB_PASS=$(grep DB_PASSWORD .env | cut -d '=' -f2)
         DB_NAME=$(grep DB_DATABASE .env | cut -d '=' -f2)
-        
+
         mysqldump -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" > "$BACKUP_DIR/database_backup.sql" 2>/dev/null || true
         if [ -f "$BACKUP_DIR/database_backup.sql" ]; then
             log_success "Database backed up"
@@ -244,7 +244,7 @@ log_success "Cache rebuilt"
 if [ -f "package.json" ]; then
     echo ""
     log_info "Building frontend assets..."
-    
+
     if command -v npm &> /dev/null; then
         npm ci --omit=dev 2>&1 | tee -a "$LOG_FILE" || log_warning "npm ci failed - attempting npm install"
         npm run build 2>&1 | tee -a "$LOG_FILE" || log_warning "npm run build may have failed"
