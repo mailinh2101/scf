@@ -20,8 +20,11 @@ class SiteSetting extends Model
      * Image-related keys that should be converted to full URLs
      */
     protected static array $imageKeys = [
+        // Basic settings
+        'logo', 'sub_logo', 'placeholder_image', 'hero_bg', 'hero_image',
+
         // Logo & Icons
-        'logo_header', 'logo_footer', 'sub_logo', 'placeholder_image',
+        'logo_header', 'logo_footer',
 
         // Home page
         'home_hero_background', 'home_hero_image', 'home_hero_decoration',

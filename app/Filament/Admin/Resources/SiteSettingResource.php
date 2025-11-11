@@ -3,12 +3,14 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\SiteSettingResource\Pages;
+use App\Helpers\SiteSettingsHelper;
 use App\Models\SiteSetting;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Filters\SelectFilter;
 
 class SiteSettingResource extends Resource
 {
@@ -24,12 +26,87 @@ class SiteSettingResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('key')
+                Forms\Components\Select::make('key')
+                    ->label('Chọn cài đặt')
+                    ->options(SiteSettingsHelper::getDescriptions())
+                    ->searchable()
                     ->required()
                     ->unique(ignoreRecord: true)
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('value')
-                    ->nullable()
+                    ->disabled(fn (?SiteSetting $record) => $record !== null)
+                    ->live()
+                    ->columnSpanFull(),
+
+                Forms\Components\Placeholder::make('description')
+                    ->label('Mô tả')
+                    ->content(fn (Forms\Get $get) => SiteSettingsHelper::getDescription($get('key') ?? ''))
+                    ->columnSpanFull(),
+
+                // Section cho Upload Hình ảnh
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\FileUpload::make('value')
+                            ->label('Chọn hình ảnh')
+                            ->image()
+                            ->directory('site-settings')
+                            ->imageEditor()
+                            ->required()
+                            ->hint('Upload hình ảnh. Hệ thống sẽ tự động lưu vào /storage/site-settings/')
+                            ->helperText('Định dạng: JPG, PNG, GIF. Kích thước tối đa: 2MB'),
+                    ])
+                    ->visible(fn (Forms\Get $get) => in_array($get('key'), ['logo', 'sub_logo', 'placeholder_image', 'hero_bg', 'hero_image']))
+                    ->columnSpanFull(),
+
+                // Section cho Email
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('value')
+                            ->label('Email')
+                            ->email()
+                            ->required()
+                            ->placeholder('hello@starvik.vn')
+                            ->suffixIcon('heroicon-o-envelope'),
+                    ])
+                    ->visible(fn (Forms\Get $get) => $get('key') === 'contact_email')
+                    ->columnSpanFull(),
+
+                // Section cho Số điện thoại
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('value')
+                            ->label('Số điện thoại')
+                            ->tel()
+                            ->required()
+                            ->placeholder('+84 90 123 4567')
+                            ->suffixIcon('heroicon-o-phone'),
+                    ])
+                    ->visible(fn (Forms\Get $get) => $get('key') === 'contact_phone')
+                    ->columnSpanFull(),
+
+                // Section cho Textarea (mô tả dài)
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\Textarea::make('value')
+                            ->label('Nội dung')
+                            ->required()
+                            ->rows(4)
+                            ->columnSpanFull(),
+                    ])
+                    ->visible(fn (Forms\Get $get) => in_array($get('key'), ['site_description', 'blog_section_title', 'blog_section_subtitle', 'office_address']))
+                    ->columnSpanFull(),
+
+                // Section cho Text ngắn (mặc định)
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('value')
+                            ->label('Giá trị')
+                            ->required()
+                            ->maxLength(255),
+                    ])
+                    ->visible(fn (Forms\Get $get) => !in_array($get('key'), [
+                        'logo', 'sub_logo', 'placeholder_image', 'hero_bg', 'hero_image',
+                        'contact_email', 'contact_phone',
+                        'site_description', 'blog_section_title', 'blog_section_subtitle', 'office_address'
+                    ]))
                     ->columnSpanFull(),
             ]);
     }
@@ -39,22 +116,29 @@ class SiteSettingResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('key')
-                    ->searchable()
+                    ->label('Khóa cài đặt')
+                    ->formatStateUsing(fn ($state) => SiteSettingsHelper::getDescription($state))
+                    ->searchable('key')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('value')
+                    ->label('Giá trị')
                     ->limit(100)
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->label('Ngày tạo')
+                    ->dateTime('d/m/Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
+                    ->label('Ngày cập nhật')
+                    ->dateTime('d/m/Y H:i')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('key')
+                    ->label('Lọc theo cài đặt')
+                    ->options(SiteSettingsHelper::getDescriptions()),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

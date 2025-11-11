@@ -10,6 +10,14 @@ class EditSiteSetting extends EditRecord
 {
     protected static string $resource = SiteSettingResource::class;
 
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        // Xóa các field không cần thiết
+        unset($data['description']);
+        unset($data['key_display']);
+        return $data;
+    }
+
     protected function getHeaderActions(): array
     {
         return [
