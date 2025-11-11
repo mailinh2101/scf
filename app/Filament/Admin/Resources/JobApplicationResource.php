@@ -35,19 +35,19 @@ class JobApplicationResource extends Resource
                                     ->disabled()
                                     ->dehydrated()
                                     ->prefixIcon('heroicon-o-user'),
-                                
+
                                 Forms\Components\TextInput::make('email')
                                     ->label('Email')
                                     ->disabled()
                                     ->dehydrated()
                                     ->prefixIcon('heroicon-o-envelope'),
-                                
+
                                 Forms\Components\TextInput::make('phone')
                                     ->label('Số điện thoại')
                                     ->disabled()
                                     ->dehydrated()
                                     ->prefixIcon('heroicon-o-phone'),
-                                
+
                                 Forms\Components\TextInput::make('position')
                                     ->label('Vị trí ứng tuyển')
                                     ->disabled()
@@ -56,7 +56,7 @@ class JobApplicationResource extends Resource
                             ]),
                     ])
                     ->columns(1),
-                
+
                 Forms\Components\Section::make('Thư giới thiệu')
                     ->description('Lời nhắn và giới thiệu bản thân (Chỉ xem)')
                     ->icon('heroicon-o-chat-bubble-left-right')
@@ -68,7 +68,7 @@ class JobApplicationResource extends Resource
                             ->dehydrated()
                             ->columnSpanFull(),
                     ]),
-                
+
                 Forms\Components\Section::make('Hồ sơ đính kèm')
                     ->description('CV/Resume của ứng viên (Chỉ xem)')
                     ->icon('heroicon-o-document')
@@ -82,7 +82,7 @@ class JobApplicationResource extends Resource
                             ->dehydrated()
                             ->columnSpanFull(),
                     ]),
-                
+
                 Forms\Components\Section::make('Quản lý trạng thái')
                     ->description('Cập nhật tình trạng xét duyệt')
                     ->icon('heroicon-o-clipboard-document-check')
@@ -104,7 +104,7 @@ class JobApplicationResource extends Resource
                     ]),
             ]);
     }
-    
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -119,19 +119,19 @@ class JobApplicationResource extends Resource
                                     ->icon('heroicon-o-user')
                                     ->size(Infolists\Components\TextEntry\TextEntrySize::Large)
                                     ->weight('bold'),
-                                
+
                                 Infolists\Components\TextEntry::make('email')
                                     ->label('Email')
                                     ->icon('heroicon-o-envelope')
                                     ->copyable()
                                     ->copyMessage('Đã copy email!'),
-                                
+
                                 Infolists\Components\TextEntry::make('phone')
                                     ->label('Số điện thoại')
                                     ->icon('heroicon-o-phone')
                                     ->copyable()
                                     ->copyMessage('Đã copy số điện thoại!'),
-                                
+
                                 Infolists\Components\TextEntry::make('position')
                                     ->label('Vị trí ứng tuyển')
                                     ->icon('heroicon-o-briefcase')
@@ -139,7 +139,7 @@ class JobApplicationResource extends Resource
                                     ->color('primary'),
                             ]),
                     ]),
-                
+
                 Infolists\Components\Section::make('Thư giới thiệu')
                     ->icon('heroicon-o-chat-bubble-left-right')
                     ->schema([
@@ -150,7 +150,7 @@ class JobApplicationResource extends Resource
                             ->columnSpanFull(),
                     ])
                     ->collapsed(fn ($record) => empty($record->message)),
-                
+
                 Infolists\Components\Section::make('Hồ sơ đính kèm')
                     ->icon('heroicon-o-document')
                     ->schema([
@@ -162,7 +162,7 @@ class JobApplicationResource extends Resource
                             ->icon(fn ($record) => $record->cv_path ? 'heroicon-o-document-arrow-down' : 'heroicon-o-document-minus')
                             ->color(fn ($record) => $record->cv_path ? 'success' : 'gray'),
                     ]),
-                
+
                 Infolists\Components\Section::make('Trạng thái và thời gian')
                     ->icon('heroicon-o-information-circle')
                     ->schema([
@@ -189,12 +189,12 @@ class JobApplicationResource extends Resource
                                         'accepted' => '✅ Chấp nhận',
                                         default => $state,
                                     }),
-                                
+
                                 Infolists\Components\TextEntry::make('created_at')
                                     ->label('Ngày ứng tuyển')
                                     ->dateTime('d/m/Y H:i')
                                     ->icon('heroicon-o-calendar'),
-                                
+
                                 Infolists\Components\TextEntry::make('ip_address')
                                     ->label('IP Address')
                                     ->icon('heroicon-o-globe-alt')
@@ -216,7 +216,7 @@ class JobApplicationResource extends Resource
                     ->icon('heroicon-o-user-circle')
                     ->weight('bold')
                     ->wrap(),
-                
+
                 Tables\Columns\TextColumn::make('phone')
                     ->label('SĐT')
                     ->icon('heroicon-o-phone')
@@ -224,14 +224,14 @@ class JobApplicationResource extends Resource
                     ->copyable()
                     ->copyMessage('Đã copy số điện thoại!')
                     ->copyMessageDuration(1500),
-                
+
                 Tables\Columns\TextColumn::make('position')
                     ->label('Vị trí ứng tuyển')
                     ->searchable()
                     ->icon('heroicon-o-briefcase')
                     ->badge()
                     ->color('primary'),
-                
+
                 Tables\Columns\IconColumn::make('cv_path')
                     ->label('CV')
                     ->boolean()
@@ -240,7 +240,7 @@ class JobApplicationResource extends Resource
                     ->trueColor('success')
                     ->falseColor('gray')
                     ->tooltip(fn ($record) => $record->cv_path ? 'Có CV đính kèm' : 'Không có CV'),
-                
+
                 Tables\Columns\BadgeColumn::make('status')
                     ->label('Trạng thái')
                     ->colors([
@@ -269,7 +269,7 @@ class JobApplicationResource extends Resource
                         default => $state,
                     })
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày ứng tuyển')
                     ->dateTime('d/m/Y H:i')
@@ -289,7 +289,7 @@ class JobApplicationResource extends Resource
                             ->toArray();
                     })
                     ->multiple(),
-                
+
                 Tables\Filters\SelectFilter::make('status')
                     ->label('Trạng thái')
                     ->options([
@@ -301,7 +301,7 @@ class JobApplicationResource extends Resource
                         'accepted' => 'Chấp nhận',
                     ])
                     ->multiple(),
-                
+
                 Tables\Filters\Filter::make('has_cv')
                     ->label('Có CV đính kèm')
                     ->query(fn ($query) => $query->whereNotNull('cv_path')),
@@ -309,10 +309,10 @@ class JobApplicationResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make()
                     ->label('Xem'),
-                
+
                 Tables\Actions\EditAction::make()
                     ->label('Sửa trạng thái'),
-                
+
                 Tables\Actions\DeleteAction::make()
                     ->label('Xóa'),
             ])
@@ -332,7 +332,7 @@ class JobApplicationResource extends Resource
             'edit' => Pages\EditJobApplication::route('/{record}/edit'),
         ];
     }
-    
+
     // Tắt tính năng tạo mới từ admin
     public static function canCreate(): bool
     {

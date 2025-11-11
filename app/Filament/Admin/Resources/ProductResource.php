@@ -37,20 +37,20 @@ class ProductResource extends Resource
                                             ->maxLength(255)
                                             ->placeholder('Nhập tên sản phẩm...')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\TextInput::make('slug')
                                             ->label('Đường dẫn (URL)')
                                             ->maxLength(255)
                                             ->placeholder('san-pham-demo')
                                             ->helperText('Để trống để tự động tạo từ tiêu đề')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\Textarea::make('description')
                                             ->label('Mô tả sản phẩm')
                                             ->rows(4)
                                             ->placeholder('Mô tả chi tiết về sản phẩm...')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\TextInput::make('category')
                                             ->label('Danh mục')
                                             ->maxLength(255)
@@ -64,7 +64,7 @@ class ProductResource extends Resource
                                             ->columnSpanFull(),
                                     ])
                                     ->columns(2),
-                                
+
                                 Forms\Components\Section::make('Hình ảnh')
                                     ->description('Upload hình ảnh đại diện cho sản phẩm')
                                     ->icon('heroicon-o-photo')
@@ -79,7 +79,7 @@ class ProductResource extends Resource
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        
+
                         Forms\Components\Tabs\Tab::make('SEO')
                             ->icon('heroicon-o-magnifying-glass')
                             ->schema([
@@ -93,7 +93,7 @@ class ProductResource extends Resource
                                             ->placeholder('Tối đa 60 ký tự')
                                             ->helperText('Tiêu đề hiển thị trên Google')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\Textarea::make('seo_description')
                                             ->label('Mô tả SEO')
                                             ->maxLength(160)
@@ -103,7 +103,7 @@ class ProductResource extends Resource
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        
+
                         Forms\Components\Tabs\Tab::make('Xuất bản')
                             ->icon('heroicon-o-eye')
                             ->schema([
@@ -129,14 +129,14 @@ class ProductResource extends Resource
                     ->label('Hình ảnh')
                     ->circular()
                     ->defaultImageUrl(url('/images/placeholder.png')),
-                
+
                 Tables\Columns\TextColumn::make('title')
                     ->label('Tên sản phẩm')
                     ->searchable()
                     ->sortable()
                     ->description(fn ($record) => $record->category)
                     ->wrap(),
-                
+
                 Tables\Columns\TextColumn::make('description')
                     ->label('Mô tả')
                     ->limit(50)
@@ -148,19 +148,19 @@ class ProductResource extends Resource
                         return $state;
                     })
                     ->toggleable(),
-                
+
                 Tables\Columns\ToggleColumn::make('published')
                     ->label('Hiển thị')
                     ->onColor('success')
                     ->offColor('danger')
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày tạo')
                     ->date('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Ngày cập nhật')
                     ->date('d/m/Y')
@@ -177,7 +177,7 @@ class ProductResource extends Resource
                             ->pluck('category', 'category')
                             ->toArray();
                     }),
-                
+
                 Tables\Filters\TernaryFilter::make('published')
                     ->label('Trạng thái')
                     ->placeholder('Tất cả')

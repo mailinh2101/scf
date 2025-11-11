@@ -9,7 +9,7 @@ use Filament\Resources\Pages\ViewRecord;
 class ViewContactSubmission extends ViewRecord
 {
     protected static string $resource = ContactSubmissionResource::class;
-    
+
     protected function getHeaderActions(): array
     {
         return [
@@ -22,7 +22,7 @@ class ViewContactSubmission extends ViewRecord
                     $this->refreshFormData(['status']);
                 })
                 ->visible(fn () => $this->record->status === 'pending'),
-            
+
             Actions\Action::make('mark_as_replied')
                 ->label('Đánh dấu đã trả lời')
                 ->icon('heroicon-o-check-circle')

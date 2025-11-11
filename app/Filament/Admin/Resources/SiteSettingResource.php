@@ -116,7 +116,7 @@ class SiteSettingResource extends Resource
                             ->required()
                             ->maxLength(255),
                     ])
-                    ->visible(fn (Forms\Get $get) => !SiteSettingsHelper::isImageField($get('key') ?? '') 
+                    ->visible(fn (Forms\Get $get) => !SiteSettingsHelper::isImageField($get('key') ?? '')
                         && !SiteSettingsHelper::isEmailField($get('key') ?? '')
                         && !SiteSettingsHelper::isPhoneField($get('key') ?? '')
                         && !SiteSettingsHelper::isUrlField($get('key') ?? '')

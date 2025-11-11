@@ -3,7 +3,7 @@
 
 /**
  * Filament Setup Verification Script
- * 
+ *
  * Run: php verify-filament.php
  * This script verifies that all Filament components are properly installed.
  */
@@ -77,21 +77,21 @@ $failed = 0;
 
 foreach ($checks as $name => $check) {
     $file = $check['file'];
-    
+
     if (!file_exists($file)) {
         echo "❌ $name\n";
         echo "   → File not found: $file\n";
         $failed++;
         continue;
     }
-    
+
     if (isset($check['exists']) && $check['exists']) {
         echo "✅ $name\n";
         echo "   → File exists: $file\n";
         $passed++;
         continue;
     }
-    
+
     if (isset($check['contains'])) {
         $content = file_get_contents($file);
         if (strpos($content, $check['contains']) !== false) {

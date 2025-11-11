@@ -37,14 +37,14 @@ class JobResource extends Resource
                                             ->maxLength(255)
                                             ->placeholder('VD: Tuyển Senior Developer Backend')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\TextInput::make('slug')
                                             ->label('Đường dẫn (URL)')
                                             ->maxLength(255)
                                             ->placeholder('tuyen-senior-developer')
                                             ->helperText('Để trống để tự động tạo')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\Grid::make(2)
                                             ->schema([
                                                 Forms\Components\TextInput::make('position')
@@ -59,7 +59,7 @@ class JobResource extends Resource
                                                         'Business Analyst',
                                                         'Designer',
                                                     ]),
-                                                
+
                                                 Forms\Components\TextInput::make('employment_type')
                                                     ->label('Loại hình công việc')
                                                     ->maxLength(255)
@@ -71,13 +71,13 @@ class JobResource extends Resource
                                                         'Internship',
                                                         'Remote',
                                                     ]),
-                                                
+
                                                 Forms\Components\TextInput::make('location')
                                                     ->label('Địa điểm làm việc')
                                                     ->maxLength(255)
                                                     ->placeholder('VD: Hà Nội, TP.HCM')
                                                     ->suffixIcon('heroicon-o-map-pin'),
-                                                
+
                                                 Forms\Components\TextInput::make('salary_range')
                                                     ->label('Mức lương')
                                                     ->maxLength(255)
@@ -85,7 +85,7 @@ class JobResource extends Resource
                                                     ->suffixIcon('heroicon-o-currency-dollar'),
                                             ]),
                                     ]),
-                                
+
                                 Forms\Components\Section::make('Mô tả chi tiết')
                                     ->description('Nội dung mô tả công việc')
                                     ->icon('heroicon-o-document')
@@ -105,7 +105,7 @@ class JobResource extends Resource
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        
+
                         Forms\Components\Tabs\Tab::make('Yêu cầu & Quyền lợi')
                             ->icon('heroicon-o-clipboard-document-check')
                             ->schema([
@@ -119,7 +119,7 @@ class JobResource extends Resource
                                             ->placeholder("VD:\n- Tốt nghiệp Đại học chuyên ngành CNTT\n- 3+ năm kinh nghiệm PHP/Laravel\n- Biết MySQL, Git, Docker")
                                             ->columnSpanFull(),
                                     ]),
-                                
+
                                 Forms\Components\Section::make('Quyền lợi')
                                     ->description('Chế độ đãi ngộ và phúc lợi')
                                     ->icon('heroicon-o-gift')
@@ -131,7 +131,7 @@ class JobResource extends Resource
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        
+
                         Forms\Components\Tabs\Tab::make('Liên hệ & Xuất bản')
                             ->icon('heroicon-o-envelope')
                             ->schema([
@@ -145,7 +145,7 @@ class JobResource extends Resource
                                             ->helperText('Email để ứng viên gửi CV')
                                             ->columnSpanFull(),
                                     ]),
-                                
+
                                 Forms\Components\Section::make('Thời gian xuất bản')
                                     ->schema([
                                         Forms\Components\Grid::make(2)
@@ -156,7 +156,7 @@ class JobResource extends Resource
                                                     ->displayFormat('d/m/Y H:i')
                                                     ->seconds(false)
                                                     ->helperText('Thời gian bắt đầu tuyển dụng'),
-                                                
+
                                                 Forms\Components\Toggle::make('published')
                                                     ->label('Trạng thái tuyển dụng')
                                                     ->helperText('Bật = Đang tuyển, Tắt = Đã đóng')
@@ -180,13 +180,13 @@ class JobResource extends Resource
                     ->sortable()
                     ->description(fn ($record) => $record->position)
                     ->wrap(),
-                
+
                 Tables\Columns\TextColumn::make('location')
                     ->label('Địa điểm')
                     ->icon('heroicon-o-map-pin')
                     ->searchable()
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('employment_type')
                     ->label('Loại hình')
                     ->badge()
@@ -197,24 +197,24 @@ class JobResource extends Resource
                         'Remote' => 'primary',
                         default => 'gray',
                     }),
-                
+
                 Tables\Columns\TextColumn::make('salary_range')
                     ->label('Mức lương')
                     ->icon('heroicon-o-currency-dollar')
                     ->toggleable(),
-                
+
                 Tables\Columns\ToggleColumn::make('published')
                     ->label('Đang tuyển')
                     ->onColor('success')
                     ->offColor('danger')
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('published_at')
                     ->label('Ngày đăng')
                     ->date('d/m/Y')
                     ->sortable()
                     ->toggleable(),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày tạo')
                     ->dateTime('d/m/Y H:i')

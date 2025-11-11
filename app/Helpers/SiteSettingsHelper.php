@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 /**
  * Site Settings Helper
- * 
+ *
  * Quản lý tất cả các cài đặt site được sử dụng trong ứng dụng
  * Cung cấp gợi ý cho người dùng khi cấu hình cài đặt mới
  */
@@ -21,7 +21,7 @@ class SiteSettingsHelper
         'site_slogan' => 'Slogan website (Khẩu hiệu)',
         'site_domain' => 'Tên miền (VD: scf.vn)',
         'site_description' => 'Mô tả ngắn về website (hiển thị ở footer, meta description)',
-        
+
         // Hình ảnh và logo (upload file)
         'logo' => 'Logo chính (Header - PNG/SVG, nền trong suốt)',
         'sub_logo' => 'Sub Logo/Icon (sử dụng trong các section)',
@@ -30,7 +30,7 @@ class SiteSettingsHelper
         'hero_image' => 'Hình ảnh Banner trang chủ (Hero image)',
         'contact_hero_image' => 'Hình ảnh Hero trang Contact',
         'contact_elements_image' => 'Hình ảnh elements trang Contact',
-        
+
         // Thông tin liên hệ
         'contact_email' => 'Email liên hệ chính (info@company.com)',
         'contact_phone' => 'Số điện thoại chính (Hotline)',
@@ -38,30 +38,30 @@ class SiteSettingsHelper
         'working_hours' => 'Giờ làm việc (VD: 8:00 - 17:30)',
         'google_maps_link' => 'Link Google Maps (URL)',
         'map_embed_src' => 'Link Google Maps Embed (iframe src)',
-        
+
         // Mạng xã hội
         'facebook_url' => 'Link Facebook Fanpage',
         'youtube_url' => 'Link Youtube Channel',
         'instagram_url' => 'Link Instagram',
         'linkedin_url' => 'Link LinkedIn',
-        
+
         // Section trang chủ - Hero
         'hero_title' => 'Tiêu đề Hero Banner (trang chủ)',
         'hero_subtitle' => 'Phụ đề Hero Banner',
         'hero_button_text' => 'Text nút Hero (VD: Tìm hiểu thêm)',
-        
+
         // Section trang chủ - Giới thiệu
         'about_title' => 'Tiêu đề mục Giới thiệu',
         'about_content' => 'Nội dung mục Giới thiệu (văn bản ngắn)',
-        
+
         // Section trang chủ - Sản phẩm/Dịch vụ
         'service_section_title' => 'Tiêu đề mục Dịch vụ',
         'service_section_subtitle' => 'Phụ đề mục Dịch vụ',
-        
+
         // Section trang chủ - Tin tức
         'blog_section_title' => 'Tiêu đề mục Tin tức',
         'blog_section_subtitle' => 'Phụ đề mục Tin tức',
-        
+
         // Footer & Labels
         'footer_copyright' => 'Text bản quyền (Copyright)',
         'contact_button_label' => 'Nhãn nút Liên hệ (VD: Liên hệ ngay)',
@@ -117,7 +117,7 @@ class SiteSettingsHelper
 
     /**
      * Lấy danh sách tất cả cài đặt được định nghĩa
-     * 
+     *
      * @return array
      */
     public static function getAll(): array
@@ -127,7 +127,7 @@ class SiteSettingsHelper
 
     /**
      * Lấy mô tả của một cài đặt
-     * 
+     *
      * @param string $key
      * @return string
      */
@@ -138,7 +138,7 @@ class SiteSettingsHelper
 
     /**
      * Kiểm tra một cài đặt có được định nghĩa không
-     * 
+     *
      * @param string $key
      * @return bool
      */
@@ -149,17 +149,17 @@ class SiteSettingsHelper
 
     /**
      * Lấy các cài đặt theo category
-     * 
+     *
      * @param string $category ('basic', 'images', 'contact', 'social_media', 'home_sections', 'labels')
      * @return array
      */
     public static function getByCategory(string $category): array
     {
         $settings = [];
-        
+
         match ($category) {
-            'basic' => $settings = array_filter(self::$predefinedSettings, 
-                fn($key) => in_array($key, ['site_name', 'site_slogan', 'site_domain', 'site_description']), 
+            'basic' => $settings = array_filter(self::$predefinedSettings,
+                fn($key) => in_array($key, ['site_name', 'site_slogan', 'site_domain', 'site_description']),
                 ARRAY_FILTER_USE_KEY),
             'images' => $settings = array_filter(self::$predefinedSettings,
                 fn($key) => self::isImageField($key),
@@ -194,7 +194,7 @@ class SiteSettingsHelper
 
     /**
      * Lấy tất cả các key
-     * 
+     *
      * @return array
      */
     public static function getKeys(): array
@@ -204,7 +204,7 @@ class SiteSettingsHelper
 
     /**
      * Lấy tất cả các mô tả
-     * 
+     *
      * @return array
      */
     public static function getDescriptions(): array
@@ -214,7 +214,7 @@ class SiteSettingsHelper
 
     /**
      * Kiểm tra một cài đặt là hình ảnh/file
-     * 
+     *
      * @param string $key
      * @return bool
      */
@@ -225,7 +225,7 @@ class SiteSettingsHelper
 
     /**
      * Kiểm tra một cài đặt là email
-     * 
+     *
      * @param string $key
      * @return bool
      */
@@ -236,7 +236,7 @@ class SiteSettingsHelper
 
     /**
      * Kiểm tra một cài đặt là điện thoại
-     * 
+     *
      * @param string $key
      * @return bool
      */
@@ -247,7 +247,7 @@ class SiteSettingsHelper
 
     /**
      * Kiểm tra một cài đặt là URL/Link
-     * 
+     *
      * @param string $key
      * @return bool
      */
@@ -258,7 +258,7 @@ class SiteSettingsHelper
 
     /**
      * Kiểm tra một cài đặt là textarea
-     * 
+     *
      * @param string $key
      * @return bool
      */

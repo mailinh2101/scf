@@ -38,20 +38,20 @@ class PostResource extends Resource
                                             ->placeholder('Nhập tiêu đề hấp dẫn...')
                                             ->live(onBlur: true)
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\TextInput::make('slug')
                                             ->label('Đường dẫn (URL)')
                                             ->maxLength(255)
                                             ->placeholder('bai-viet-demo')
                                             ->helperText('Để trống để tự động tạo từ tiêu đề')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\Textarea::make('excerpt')
                                             ->label('Tóm tắt ngắn')
                                             ->rows(3)
                                             ->placeholder('Tóm tắt ngắn gọn nội dung bài viết (hiển thị ở trang danh sách)...')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\RichEditor::make('content')
                                             ->label('Nội dung chi tiết')
                                             ->toolbarButtons([
@@ -71,7 +71,7 @@ class PostResource extends Resource
                                             ->placeholder('Viết nội dung bài viết tại đây...')
                                             ->columnSpanFull(),
                                     ]),
-                                
+
                                 Forms\Components\Section::make('Hình ảnh nổi bật')
                                     ->description('Hình ảnh đại diện cho bài viết')
                                     ->icon('heroicon-o-photo')
@@ -86,7 +86,7 @@ class PostResource extends Resource
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        
+
                         Forms\Components\Tabs\Tab::make('Xuất bản')
                             ->icon('heroicon-o-calendar')
                             ->schema([
@@ -103,7 +103,7 @@ class PostResource extends Resource
                                             ->columnSpanFull(),
                                     ]),
                             ]),
-                        
+
                         Forms\Components\Tabs\Tab::make('SEO')
                             ->icon('heroicon-o-magnifying-glass')
                             ->schema([
@@ -117,7 +117,7 @@ class PostResource extends Resource
                                             ->placeholder('Tối đa 60 ký tự')
                                             ->helperText('Hiển thị trên Google Search')
                                             ->columnSpanFull(),
-                                        
+
                                         Forms\Components\Textarea::make('seo_description')
                                             ->label('Mô tả SEO')
                                             ->maxLength(160)
@@ -140,14 +140,14 @@ class PostResource extends Resource
                     ->label('Ảnh nổi bật')
                     ->circular()
                     ->defaultImageUrl(url('/images/placeholder.png')),
-                
+
                 Tables\Columns\TextColumn::make('title')
                     ->label('Tiêu đề bài viết')
                     ->searchable()
                     ->sortable()
                     ->description(fn ($record) => $record->excerpt ? \Str::limit($record->excerpt, 60) : null)
                     ->wrap(),
-                
+
                 Tables\Columns\IconColumn::make('published_at')
                     ->label('Xuất bản')
                     ->boolean()
@@ -156,23 +156,23 @@ class PostResource extends Resource
                     ->trueColor('success')
                     ->falseColor('warning')
                     ->sortable()
-                    ->tooltip(fn ($record) => $record->published_at 
+                    ->tooltip(fn ($record) => $record->published_at
                         ? 'Đã xuất bản: ' . $record->published_at->format('d/m/Y H:i')
                         : 'Bản nháp'),
-                
+
                 Tables\Columns\TextColumn::make('published_at')
                     ->label('Ngày xuất bản')
                     ->date('d/m/Y')
                     ->sortable()
                     ->placeholder('Chưa xuất bản')
                     ->toggleable(),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày tạo')
                     ->date('d/m/Y')
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                
+
                 Tables\Columns\TextColumn::make('updated_at')
                     ->label('Ngày cập nhật')
                     ->date('d/m/Y')
@@ -184,7 +184,7 @@ class PostResource extends Resource
                 Tables\Filters\Filter::make('published')
                     ->label('Đã xuất bản')
                     ->query(fn ($query) => $query->whereNotNull('published_at')),
-                
+
                 Tables\Filters\Filter::make('draft')
                     ->label('Bản nháp')
                     ->query(fn ($query) => $query->whereNull('published_at')),

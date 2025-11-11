@@ -38,13 +38,13 @@ class ContactSubmissionResource extends Resource
                                     ->disabled()
                                     ->dehydrated()
                                     ->prefixIcon('heroicon-o-user'),
-                                
+
                                 Forms\Components\TextInput::make('email')
                                     ->label('Email')
                                     ->disabled()
                                     ->dehydrated()
                                     ->prefixIcon('heroicon-o-envelope'),
-                                
+
                                 Forms\Components\TextInput::make('phone')
                                     ->label('Số điện thoại')
                                     ->disabled()
@@ -53,7 +53,7 @@ class ContactSubmissionResource extends Resource
                             ]),
                     ])
                     ->columns(1),
-                
+
                 Forms\Components\Section::make('Nội dung liên hệ')
                     ->description('Thông tin yêu cầu của khách hàng (Chỉ xem)')
                     ->icon('heroicon-o-chat-bubble-left-ellipsis')
@@ -63,7 +63,7 @@ class ContactSubmissionResource extends Resource
                             ->disabled()
                             ->dehydrated()
                             ->columnSpanFull(),
-                        
+
                         Forms\Components\Textarea::make('message')
                             ->label('Nội dung chi tiết')
                             ->disabled()
@@ -71,7 +71,7 @@ class ContactSubmissionResource extends Resource
                             ->rows(6)
                             ->columnSpanFull(),
                     ]),
-                
+
                 Forms\Components\Section::make('Quản lý trạng thái')
                     ->description('Cập nhật tình trạng xử lý')
                     ->icon('heroicon-o-clipboard-document-check')
@@ -90,7 +90,7 @@ class ContactSubmissionResource extends Resource
                     ]),
             ]);
     }
-    
+
     public static function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -105,13 +105,13 @@ class ContactSubmissionResource extends Resource
                                     ->icon('heroicon-o-user')
                                     ->size(Infolists\Components\TextEntry\TextEntrySize::Large)
                                     ->weight('bold'),
-                                
+
                                 Infolists\Components\TextEntry::make('email')
                                     ->label('Email')
                                     ->icon('heroicon-o-envelope')
                                     ->copyable()
                                     ->copyMessage('Đã copy email!'),
-                                
+
                                 Infolists\Components\TextEntry::make('phone')
                                     ->label('Số điện thoại')
                                     ->icon('heroicon-o-phone')
@@ -120,7 +120,7 @@ class ContactSubmissionResource extends Resource
                                     ->placeholder('Không có'),
                             ]),
                     ]),
-                
+
                 Infolists\Components\Section::make('Nội dung liên hệ')
                     ->icon('heroicon-o-chat-bubble-left-ellipsis')
                     ->schema([
@@ -130,13 +130,13 @@ class ContactSubmissionResource extends Resource
                             ->weight('bold')
                             ->icon('heroicon-o-document-text')
                             ->columnSpanFull(),
-                        
+
                         Infolists\Components\TextEntry::make('message')
                             ->label('Nội dung chi tiết')
                             ->markdown()
                             ->columnSpanFull(),
                     ]),
-                
+
                 Infolists\Components\Section::make('Trạng thái và thời gian')
                     ->icon('heroicon-o-information-circle')
                     ->schema([
@@ -157,7 +157,7 @@ class ContactSubmissionResource extends Resource
                                         'replied' => '✅ Đã trả lời',
                                         default => $state,
                                     }),
-                                
+
                                 Infolists\Components\TextEntry::make('created_at')
                                     ->label('Ngày gửi')
                                     ->dateTime('d/m/Y H:i')
@@ -191,7 +191,7 @@ class ContactSubmissionResource extends Resource
                         default => $state,
                     })
                     ->sortable(),
-                
+
                 Tables\Columns\TextColumn::make('first_name')
                     ->label('Thông tin liên hệ')
                     ->searchable()
@@ -199,20 +199,20 @@ class ContactSubmissionResource extends Resource
                     ->description(fn ($record) => $record->email)
                     ->icon('heroicon-o-user')
                     ->wrap(),
-                
+
                 Tables\Columns\TextColumn::make('phone')
                     ->label('SĐT')
                     ->icon('heroicon-o-phone')
                     ->searchable()
                     ->toggleable(),
-                
+
                 Tables\Columns\TextColumn::make('subject')
                     ->label('Tiêu đề & Nội dung')
                     ->searchable()
                     ->description(fn ($record) => \Str::limit($record->message, 80))
                     ->wrap()
                     ->weight('bold'),
-                
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Ngày gửi')
                     ->dateTime('d/m/Y H:i')
@@ -234,10 +234,10 @@ class ContactSubmissionResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make()
                     ->label('Xem'),
-                
+
                 Tables\Actions\EditAction::make()
                     ->label('Sửa trạng thái'),
-                
+
                 // Cho phép cập nhật trạng thái nhanh
                 Tables\Actions\Action::make('mark_as_read')
                     ->label('Đã đọc')
@@ -246,7 +246,7 @@ class ContactSubmissionResource extends Resource
                     ->action(fn ($record) => $record->update(['status' => 'read']))
                     ->visible(fn ($record) => $record->status === 'pending')
                     ->requiresConfirmation(false),
-                
+
                 Tables\Actions\Action::make('mark_as_replied')
                     ->label('Đã trả lời')
                     ->icon('heroicon-o-check-circle')
@@ -254,7 +254,7 @@ class ContactSubmissionResource extends Resource
                     ->action(fn ($record) => $record->update(['status' => 'replied']))
                     ->visible(fn ($record) => $record->status !== 'replied')
                     ->requiresConfirmation(false),
-                
+
                 Tables\Actions\DeleteAction::make()
                     ->label('Xóa'),
             ])
@@ -265,14 +265,14 @@ class ContactSubmissionResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -281,10 +281,10 @@ class ContactSubmissionResource extends Resource
             'edit' => Pages\EditContactSubmission::route('/{record}/edit'),
         ];
     }
-    
+
     // Tắt tính năng tạo mới từ admin
     public static function canCreate(): bool
     {
         return false;
-    }    
+    }
 }
