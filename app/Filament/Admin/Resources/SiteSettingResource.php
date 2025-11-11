@@ -53,7 +53,7 @@ class SiteSettingResource extends Resource
                             ->hint('Upload hình ảnh. Hệ thống sẽ tự động lưu vào /storage/site-settings/')
                             ->helperText('Định dạng: JPG, PNG, GIF. Kích thước tối đa: 2MB'),
                     ])
-                    ->visible(fn (Forms\Get $get) => in_array($get('key'), ['logo', 'sub_logo', 'placeholder_image', 'hero_bg', 'hero_image']))
+                    ->visible(fn (Forms\Get $get) => SiteSettingsHelper::isImageField($get('key') ?? ''))
                     ->columnSpanFull(),
 
                 // Section cho Email
@@ -66,7 +66,7 @@ class SiteSettingResource extends Resource
                             ->placeholder('hello@starvik.vn')
                             ->suffixIcon('heroicon-o-envelope'),
                     ])
-                    ->visible(fn (Forms\Get $get) => $get('key') === 'contact_email')
+                    ->visible(fn (Forms\Get $get) => SiteSettingsHelper::isEmailField($get('key') ?? ''))
                     ->columnSpanFull(),
 
                 // Section cho Số điện thoại
@@ -79,7 +79,21 @@ class SiteSettingResource extends Resource
                             ->placeholder('+84 90 123 4567')
                             ->suffixIcon('heroicon-o-phone'),
                     ])
-                    ->visible(fn (Forms\Get $get) => $get('key') === 'contact_phone')
+                    ->visible(fn (Forms\Get $get) => SiteSettingsHelper::isPhoneField($get('key') ?? ''))
+                    ->columnSpanFull(),
+
+                // Section cho URL/Link
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('value')
+                            ->label('Link URL')
+                            ->url()
+                            ->required()
+                            ->placeholder('https://facebook.com/yourpage')
+                            ->suffixIcon('heroicon-o-link')
+                            ->helperText('Nhập URL đầy đủ, bắt đầu bằng http:// hoặc https://'),
+                    ])
+                    ->visible(fn (Forms\Get $get) => SiteSettingsHelper::isUrlField($get('key') ?? ''))
                     ->columnSpanFull(),
 
                 // Section cho Textarea (mô tả dài)
@@ -91,7 +105,7 @@ class SiteSettingResource extends Resource
                             ->rows(4)
                             ->columnSpanFull(),
                     ])
-                    ->visible(fn (Forms\Get $get) => in_array($get('key'), ['site_description', 'blog_section_title', 'blog_section_subtitle', 'office_address']))
+                    ->visible(fn (Forms\Get $get) => SiteSettingsHelper::isTextareaField($get('key') ?? ''))
                     ->columnSpanFull(),
 
                 // Section cho Text ngắn (mặc định)
@@ -102,11 +116,11 @@ class SiteSettingResource extends Resource
                             ->required()
                             ->maxLength(255),
                     ])
-                    ->visible(fn (Forms\Get $get) => !in_array($get('key'), [
-                        'logo', 'sub_logo', 'placeholder_image', 'hero_bg', 'hero_image',
-                        'contact_email', 'contact_phone',
-                        'site_description', 'blog_section_title', 'blog_section_subtitle', 'office_address'
-                    ]))
+                    ->visible(fn (Forms\Get $get) => !SiteSettingsHelper::isImageField($get('key') ?? '') 
+                        && !SiteSettingsHelper::isEmailField($get('key') ?? '')
+                        && !SiteSettingsHelper::isPhoneField($get('key') ?? '')
+                        && !SiteSettingsHelper::isUrlField($get('key') ?? '')
+                        && !SiteSettingsHelper::isTextareaField($get('key') ?? ''))
                     ->columnSpanFull(),
             ]);
     }

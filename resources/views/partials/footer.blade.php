@@ -11,10 +11,18 @@
                     </p>
                     <div class="space24"></div>
                     <ul>
-                        <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li><a href="#" class="m-0"><i class="fa-brands fa-youtube"></i></a></li>
+                        @if(!empty($siteSettings['facebook_url']))
+                        <li><a href="{{ $siteSettings['facebook_url'] }}" target="_blank" rel="noopener"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['linkedin_url']))
+                        <li><a href="{{ $siteSettings['linkedin_url'] }}" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['instagram_url']))
+                        <li><a href="{{ $siteSettings['instagram_url'] }}" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a></li>
+                        @endif
+                        @if(!empty($siteSettings['youtube_url']))
+                        <li><a href="{{ $siteSettings['youtube_url'] }}" target="_blank" rel="noopener" class="m-0"><i class="fa-brands fa-youtube"></i></a></li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -40,12 +48,12 @@
                         <li><a href="tel:{{ $siteSettings['contact_phone'] ?? '+84901234567' }}"><img
                                     src="{{ asset('images/phn1.svg') }}"
                                     alt="">{{ $siteSettings['contact_phone'] ?? '+84 90 123 4567' }}</a></li>
-                        <li><a href="#"><img src="{{ asset('images/location1.svg') }}"
+                        <li><a href="{{ $siteSettings['google_maps_link'] ?? '#' }}" target="_blank" rel="noopener"><img src="{{ asset('images/location1.svg') }}"
                                     alt="">{{ $siteSettings['office_address'] ?? 'Hà Nội, Việt Nam' }}</a></li>
                         <li><a href="mailto:{{ $siteSettings['contact_email'] ?? 'hello@starvik.vn' }}"><img
                                     src="{{ asset('images/email1.svg') }}"
                                     alt="">{{ $siteSettings['contact_email'] ?? 'hello@starvik.vn' }}</a></li>
-                        <li><a href="#"><img src="{{ asset('images/global1.svg') }}"
+                        <li><a href="https://{{ $siteSettings['site_domain'] ?? 'starvik.vn' }}" target="_blank"><img src="{{ asset('images/global1.svg') }}"
                                     alt="">{{ $siteSettings['site_domain'] ?? 'starvik.vn' }}</a>
                         </li>
                     </ul>
@@ -69,7 +77,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="vl-copyright-area">
-                    <p>© Copyright {{ date('Y') }} - {{ $siteSettings['site_domain'] }}. All Right Reserved</p>
+                    <p>{{ $siteSettings['footer_copyright'] ?? '© Copyright ' . date('Y') . ' - ' . ($siteSettings['site_name'] ?? 'SCF') . '. All Right Reserved' }}</p>
                 </div>
             </div>
         </div>
