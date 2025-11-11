@@ -42,11 +42,6 @@
 
     <link rel="shortcut icon" href="{{ asset('images/favicon-32x32.png') }}" type="image/x-icon">
 
-    @php
-        // Load all site settings from database for use in views
-        $siteSettings = \App\Models\SiteSetting::pluck('value', 'key')->toArray();
-    @endphp
-
     {{-- Styles (from original template) --}}
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">

@@ -14,9 +14,7 @@ class JobController extends Controller
             ->orderBy('published_at', 'desc')
             ->get();
 
-        $siteSettings = \App\Models\SiteSetting::pluck('value', 'key')->toArray();
-
-        return view('careers', compact('jobs', 'siteSettings'));
+        return view('careers', compact('jobs'));
     }
 
     public function show($slug)
@@ -33,8 +31,6 @@ class JobController extends Controller
             ->limit(5)
             ->get();
 
-        $siteSettings = \App\Models\SiteSetting::pluck('value', 'key')->toArray();
-
-        return view('job-detail', compact('job', 'recentJobs', 'siteSettings'));
+        return view('job-detail', compact('job', 'recentJobs'));
     }
 }
